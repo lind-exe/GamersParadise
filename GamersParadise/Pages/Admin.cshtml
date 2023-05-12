@@ -1,0 +1,33 @@
+﻿@page
+@model GamersParadise.Pages.AdminModel
+@{
+}
+
+<table class="table">
+@for (int i = 1; i <= Model.SubCategories.Count; i++)
+{
+    <tr>
+            <td><a asp-route-editid="@Model.SubCategories[i - 1].Id">Edit</a></td>
+            <td>@Model.SubCategories[i - 1].Id</td>
+            <td>@Model.SubCategories[i - 1].Name</td>
+    </tr>
+
+}
+</table>
+
+
+<form method="post" class="m-5">
+
+    <input asp-for="NewSubCategory.Id" type="hidden" />
+    <label asp-for="NewSubCategory.Name"></label>
+    <input asp-for="NewSubCategory.Name" />
+    <span asp-validation-for="NewSubCategory.Name" class="text-danger"></span>
+
+    <br />
+    <input class="m-5" type="submit" value="Lägg till ny produkt/Spara ändringar" />
+
+
+
+
+
+</form>
