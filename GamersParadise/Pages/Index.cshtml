@@ -6,4 +6,21 @@
 <div class="text-center">
     <h1 class="display-4">Gamers Paradise</h1>
 
+    <table class="table">
+        @for (int i = 1; i <= Model.SubCategories.Count; i++)
+        {
+            <tr>
+                <td>@Model.SubCategories[i - 1].Name</td>
+                <td><a asp-route-editid="@i">Skriv nytt inlägg</a></td>
+            </tr>
+        }
+    </table>
+
+    @if (Model.SubCategory is not null)
+    {
+        <form method="post">
+            <label></label>
+            <input>
+        </form>
+    }
 </div>
