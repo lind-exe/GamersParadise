@@ -76,7 +76,7 @@ namespace GamersParadise.Pages.Administration.SubCategoryAdmin
 
                 if (MainCategory != null)
                 {
-                    
+                    //SubCategory.Name = NewSubCategory.Name;               MainCategory.SubCategory.Name == invalid av någon anledning
                     MainCategory.SubCategories.Add(NewSubCategory);
                     
                 }
