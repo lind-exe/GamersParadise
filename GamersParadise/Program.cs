@@ -18,7 +18,23 @@ namespace GamersParadise
             builder.Services.AddDbContext<GamersParadiseContext>(options => options.UseSqlServer(connectionString));
 
             builder.Services.AddDefaultIdentity<GamersParadiseUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<GamersParadiseContext>();
-           
+
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                // Default User settings. // man kunde ha @ och +, samt unique email = false
+                options.User.AllowedUserNameCharacters =
+                        "abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ0123456789-._";
+                options.User.RequireUniqueEmail = true;
+                // Default Password settings.  == true,true,true,true
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
            

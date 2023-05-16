@@ -1,5 +1,4 @@
-﻿using GamersParadise.Models;
-using System.Text.Json;
+﻿
 
 namespace GamersParadise.DAL
 {

@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace GamersParadise.Areas.Identity.Pages.Account
 {
@@ -71,6 +72,21 @@ namespace GamersParadise.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [DisplayName("First Name")]
+            public string FirstName { get; set; }
+            [Required]
+            [DisplayName("Last Name")]
+            public string LastName { get; set; }
+            [Required]
+            [DisplayName("Username")]
+            public string NickName { get; set; }        // NickName == Identity.Data.GamersParadiseUser.UserName
+            [Required]
+            [DisplayName("Birth Year")]
+            public int BirthYear { get; set; }
+
+
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -113,9 +129,23 @@ namespace GamersParadise.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                //var user = CreateUser();
+                var user = new GamersParadiseUser
+                {
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    BirthYear = Input.BirthYear,
+                    UserName = Input.NickName,
+                    NickName = Input.NickName,
+                };
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+
+
+
+                await _userStore.SetUserNameAsync(user, Input.NickName, CancellationToken.None);
+                
+                
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 

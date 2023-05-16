@@ -42,7 +42,7 @@ namespace GamersParadise.Pages
                 await AdminManager.SaveSubCategory(NewSubCategory);
             }
             SubCategories = await AdminManager.GetAllSubCategories();
-            return Page();
+            return RedirectToPage("/Admin");
         }
     }
 }

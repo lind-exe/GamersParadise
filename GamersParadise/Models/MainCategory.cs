@@ -8,6 +8,6 @@ namespace GamersParadise.Models
         public string Name { get; set; }
 
         [JsonPropertyName("subCategories")]
-        public List<SubCategory> SubCategories { get; set; }
+        public List<SubCategory>? SubCategories { get; set; }
     }
 }
