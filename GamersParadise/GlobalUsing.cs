@@ -5,3 +5,5 @@ global using Microsoft.AspNetCore.Mvc.RazorPages;
 global using GamersParadise.Areas.Identity.Data;
 global using Microsoft.AspNetCore.Identity;
 global using System.Text.Json;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;

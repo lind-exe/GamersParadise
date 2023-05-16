@@ -1,9 +1,4 @@
-﻿using GamersParadise.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using GamersParadise.Models;
-namespace GamersParadise.Data;
+﻿namespace GamersParadise.Data;
 
 public class GamersParadiseContext : IdentityDbContext<GamersParadiseUser>
 {

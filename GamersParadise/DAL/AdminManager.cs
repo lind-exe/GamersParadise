@@ -1,10 +1,14 @@
 ﻿
 
+using GamersParadise.Data;
+
 namespace GamersParadise.DAL
 {
     public static class AdminManager
     {
         private static Uri _baseAdress = new Uri("https://localhost:44342/");
+
+     
 
         public static List<SubCategory> SubCategories { get; set; }
 

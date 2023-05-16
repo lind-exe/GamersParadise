@@ -1,0 +1,58 @@
+﻿@page
+@model GamersParadise.Pages.Administration.SubCategoryAdmin.IndexModel
+@{
+}
+
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown
+    </button>
+    <ul class="dropdown-menu">
+        @foreach (var mainCategory in Model.MainCategories)
+        {
+
+            <li>
+                <a asp-route-mainCategoryId="@mainCategory.Id"><button class="dropdown-item" type="button">@mainCategory.Name</button></a>
+
+            </li>
+        }
+
+    </ul>
+</div>
+
+
+@if (Model.MainCategory != null)
+{
+
+    if (Model.MainCategory.SubCategories != null)
+    {
+        
+    <table class="table">
+        @for (int i = 1; i <= Model.MainCategory.SubCategories.Count; i++)
+        {
+            <tr>
+                <td><a asp-route-editid="@Model.MainCategory.SubCategories[i - 1].Id">Edit</a></td>
+                <td>@Model.MainCategory.SubCategories[i - 1].Id</td>
+                <td>@Model.MainCategory.SubCategories[i - 1].Name</td>
+            </tr>
+
+        }
+    </table>
+    }
+    <form method="post" class="m-5">
+
+        <input asp-for="NewSubCategory.Id" type="hidden" />
+        <label asp-for="NewSubCategory.Name"></label>
+        <input asp-for="NewSubCategory.Name" />
+        <span asp-validation-for="NewSubCategory.Name" class="text-danger"></span>
+
+        <br />
+        <input class="m-5" type="submit" value="Lägg till ny produkt/Spara ändringar" />
+
+
+
+
+
+    </form>
+}
