@@ -1,6 +1,8 @@
-using GamersParadise.Data;
+//using GamersParadise.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using GamersParadise.Data;
+using GamersParadise.Areas.Identity.Data;
 
 namespace GamersParadise
 {
@@ -11,13 +13,15 @@ namespace GamersParadise
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            var connectionString = builder.Configuration.GetConnectionString("GamersParadiseContextConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            builder.Services.AddDbContext<GamersParadiseContext>(options => options.UseSqlServer(connectionString));
+
+            builder.Services.AddDefaultIdentity<GamersParadiseUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<GamersParadiseContext>();
+           
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+           
             builder.Services.AddRazorPages();
 
             var app = builder.Build();
@@ -39,6 +43,7 @@ namespace GamersParadise
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();

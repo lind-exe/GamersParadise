@@ -7,7 +7,7 @@ namespace GamersParadise.Models
         [JsonPropertyName("id")]
         public int Id { get; set; }
         [JsonPropertyName("authorId")]
-        public string AuthorId { get; set; }
+        public string UserId { get; set; }
         [JsonPropertyName("header")]
         public string Header { get; set; }
         [JsonPropertyName("text")]
